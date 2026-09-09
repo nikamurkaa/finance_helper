@@ -1,88 +1,90 @@
+**English** | [Русский](README.ru.md)
+
 # Finance Helper
 
-**Finance Helper** — микросервисный сервис для учёта и анализа личных финансов через Telegram-бота и Mini App.
+**Finance Helper** is a microservices-based application for tracking and analyzing personal finances through a Telegram bot and Mini App.
 
-Проект разработан как выпускная квалификационная работа и включает несколько FastAPI-сервисов, PostgreSQL, миграции, внутренний API, аналитику, совместные бюджеты, импорт банковских выписок, экспорт данных и автоматизированные тесты.
+Developed as a graduation thesis project, it includes several FastAPI services, PostgreSQL, migrations, an internal API, analytics, shared budgets, bank statement imports, data exports, and automated tests.
 
-## Что демонстрирует проект
+## Skills demonstrated
 
-- проектирование backend-системы из нескольких сервисов;
-- REST API на FastAPI;
-- работу с PostgreSQL через SQLAlchemy и Alembic;
-- Telegram Bot на aiogram;
-- маршрутизацию запросов через API Gateway;
-- внутреннюю аутентификацию сервисов по API-ключу;
-- работу с пользовательскими и совместными бюджетами;
-- аналитические отчёты и экспорт данных;
-- Mini App как дополнительный пользовательский интерфейс;
-- конфигурацию через переменные окружения;
-- автоматизированные и ручные тестовые сценарии.
-
----
-
-## Возможности
-
-Пользователь может:
-
-- вести учёт доходов и расходов;
-- добавлять операции текстом, командами и кнопками меню;
-- указывать дату операции, в том числе задним числом;
-- просматривать, редактировать и удалять операции;
-- создавать собственные категории доходов и расходов;
-- назначать ключевые слова для автоматического подбора категории;
-- устанавливать лимиты и бюджеты;
-- получать предупреждения при достижении лимитов;
-- формировать отчёты за период;
-- получать дневную финансовую сводку;
-- анализировать структуру расходов;
-- использовать совместные бюджеты и рабочие пространства;
-- экспортировать данные в CSV и XLSX;
-- просматривать расширенную аналитику в Mini App;
-- импортировать банковские выписки.
+- designing a backend system composed of multiple services;
+- building REST APIs with FastAPI;
+- working with PostgreSQL through SQLAlchemy and Alembic;
+- developing a Telegram bot with aiogram;
+- routing requests through an API Gateway;
+- authenticating internal service requests with an API key;
+- managing personal and shared budgets;
+- generating analytical reports and data exports;
+- providing a Mini App as an additional user interface;
+- configuring services through environment variables;
+- creating automated and manual test scenarios.
 
 ---
 
-## Интерфейс
+## Features
 
-### Быстрое добавление операций
+Users can:
 
-Finance Helper понимает операции, введённые обычным сообщением, включая сумму, категорию и относительную дату.
+- track income and expenses;
+- add transactions through text messages, commands, and menu buttons;
+- specify transaction dates, including past dates;
+- view, edit, and delete transactions;
+- create custom income and expense categories;
+- assign keywords for automatic category selection;
+- set spending limits and budgets;
+- receive alerts when limits are reached;
+- generate reports for a selected period;
+- receive a daily financial summary;
+- analyze spending patterns;
+- use shared budgets and workspaces;
+- export data to CSV and XLSX;
+- view advanced analytics in the Mini App;
+- import bank statements.
 
-![Finance Helper — быстрое добавление операции](docs/assets/finance-helper-bot-quick-entry.png)
+---
 
-### Пошаговое добавление расхода
+## Interface
 
-Операцию также можно добавить через интерактивный сценарий с выбором категории, комментарием и датой.
+### Quick transaction entry
 
-![Finance Helper — добавление расхода](docs/assets/finance-helper-bot-expense-flow.png)
+Finance Helper understands transactions entered as ordinary messages, including the amount, category, and relative date.
 
-### Финансовые отчёты
+![Finance Helper — quick transaction entry](docs/assets/finance-helper-bot-quick-entry.png)
 
-Бот формирует месячные отчёты с расходами, доходами, балансом и распределением по категориям.
+### Step-by-step expense entry
 
-![Finance Helper — финансовый отчёт](docs/assets/finance-helper-bot-monthly-report.png)
+Transactions can also be added through an interactive flow with category, comment, and date selection.
+
+![Finance Helper — expense entry](docs/assets/finance-helper-bot-expense-flow.png)
+
+### Financial reports
+
+The bot generates monthly reports showing expenses, income, balance, and category breakdowns.
+
+![Finance Helper — financial report](docs/assets/finance-helper-bot-monthly-report.png)
 
 ### Mini App
 
-Mini App предоставляет расширенный дашборд с балансом, расходами, доходами, прогнозом и распределением расходов по категориям.
+The Mini App provides an extended dashboard with balance, expenses, income, a forecast, and a spending breakdown by category.
 
 ![Finance Helper Mini App — dashboard](docs/assets/finance-helper-miniapp-dashboard.png)
 
-### AI-анализ расходов
+### AI spending analysis
 
-Аналитический модуль выделяет основные изменения, крупнейшие категории и операции и формирует рекомендации на основе финансовых данных.
+The analytics module identifies key changes, the largest categories and transactions, and generates recommendations based on financial data.
 
-![Finance Helper Mini App — AI-анализ](docs/assets/finance-helper-miniapp-ai-analysis.png)
+![Finance Helper Mini App — AI analysis](docs/assets/finance-helper-miniapp-ai-analysis.png)
 
-### История операций
+### Transaction history
 
-В Mini App доступна история доходов и расходов с категориями, датами, участниками и комментариями.
+The Mini App provides income and expense history with categories, dates, participants, and comments.
 
-![Finance Helper Mini App — операции](docs/assets/finance-helper-miniapp-operations.png)
+![Finance Helper Mini App — transactions](docs/assets/finance-helper-miniapp-operations.png)
 
 ---
 
-## Архитектура
+## Architecture
 
 ```text
 Telegram Bot                 Mini App
@@ -101,50 +103,50 @@ Telegram Bot                 Mini App
           └─────────────────┘
 ```
 
-`finance-service` является источником финансовых данных и работает с PostgreSQL. `analytics-service` запрашивает операции и лимиты у `finance-service` по внутреннему HTTP API, а не обращается к его базе напрямую.
+`finance-service` is the source of financial data and uses PostgreSQL. `analytics-service` requests transactions and limits from `finance-service` through an internal HTTP API rather than accessing its database directly.
 
 ### `finance-service`
 
-Основной сервис данных. Отвечает за:
+The core data service. Responsible for:
 
-- пользователей;
-- финансовые операции;
-- категории;
-- лимиты;
-- рабочие пространства;
-- участников совместных бюджетов;
-- импорт банковских выписок.
+- users;
+- financial transactions;
+- categories;
+- limits;
+- workspaces;
+- shared budget participants;
+- bank statement imports.
 
 ### `analytics-service`
 
-Сервис аналитики и отчётности:
+The analytics and reporting service:
 
-- запрашивает финансовые данные у `finance-service`;
-- формирует дневные сводки;
-- строит отчёты за период;
-- анализирует расходы;
-- формирует экспорт CSV/XLSX;
-- отдаёт данные для Mini App.
+- requests financial data from `finance-service`;
+- generates daily summaries;
+- builds reports for a selected period;
+- analyzes expenses;
+- generates CSV/XLSX exports;
+- serves data for the Mini App.
 
 ### `api-gateway`
 
-Единая точка входа для пользовательских и внутренних запросов. Маршрутизирует запросы между сервисами и отдаёт Mini App.
+A single entry point for user and internal requests. Routes requests between services and serves the Mini App.
 
 ### `bot-service`
 
-Telegram-интерфейс на aiogram. Через бота доступны основные пользовательские сценарии Finance Helper.
+The Telegram interface built with aiogram. The bot provides access to Finance Helper's core user workflows.
 
 ### Mini App
 
-Веб-интерфейс для расширенного просмотра финансовых данных и аналитики. В серверной конфигурации Mini App открывается по публичному HTTPS-адресу, указанному в `MINIAPP_PUBLIC_URL`.
+A web interface for extended financial data and analytics views. In the server configuration, the Mini App is available at the public HTTPS address specified in `MINIAPP_PUBLIC_URL`.
 
-Сервисы взаимодействуют по HTTP. Внутренние запросы защищены отдельным `INTERNAL_API_KEY`.
+Services communicate over HTTP. Internal requests are protected by a separate `INTERNAL_API_KEY`.
 
 ---
 
-## Стек технологий
+## Technology stack
 
-| Слой | Технологии |
+| Layer | Technologies |
 | --- | --- |
 | Backend | Python 3.11+, FastAPI, Pydantic |
 | Telegram | aiogram, Telegram Bot API |
@@ -152,14 +154,14 @@ Telegram-интерфейс на aiogram. Через бота доступны �
 | Migrations | Alembic |
 | API | REST, internal service-to-service HTTP |
 | Mini App | HTML, CSS, JavaScript, Telegram Mini App |
-| Testing | pytest, ручные test scenarios |
-| Deployment | облачный сервер, HTTPS-домен, отдельные Python-процессы |
+| Testing | pytest, manual test scenarios |
+| Deployment | cloud server, HTTPS domain, separate Python processes |
 
-В актуальной серверной конфигурации проекта Docker и `ngrok` не требуются.
+The current server configuration does not require Docker or `ngrok`.
 
 ---
 
-## Структура проекта
+## Project structure
 
 ```text
 finance_helper/
@@ -184,7 +186,7 @@ finance_helper/
         └── tests/
 ```
 
-Рабочая директория:
+Working directory:
 
 ```text
 finance_helper/source_files
@@ -192,38 +194,38 @@ finance_helper/source_files
 
 ---
 
-## Настройка окружения
+## Environment setup
 
-Все пути `cd finance_helper/source_files/...` ниже указаны **от корня репозитория**.
-Каждый раздел начинайте из корня; сервисы запускайте в отдельных терминалах
-с активированным окружением. Для локальной демонстрации достаточно раздела
-«Локальная демонстрация одной командой» после установки и подготовки БД.
+All `cd finance_helper/source_files/...` paths below are relative to **the repository root**.
+Start each section from the root; run services in separate terminals
+with the environment activated. For a local demo, follow
+“One-command local demo” after installing dependencies and preparing the database.
 
-Перейдите в рабочую директорию и создайте `.env` из безопасного шаблона:
+Change to the working directory and create `.env` from the safe template:
 
 ```bash
 cd finance_helper/source_files
 cp .env.example .env
 ```
 
-Основные переменные:
+Key variables:
 
-| Переменная | Назначение |
+| Variable | Purpose |
 | --- | --- |
-| `BOT_TOKEN` | токен Telegram-бота |
-| `INTERNAL_API_KEY` | ключ внутренних запросов между сервисами |
-| `MINIAPP_SIGNING_SECRET` | секрет для подписи Mini App token/data |
-| `MINIAPP_PUBLIC_URL` | публичный HTTPS-адрес Mini App |
-| `FINANCE_URL` | адрес finance-service |
-| `ANALYTICS_URL` | адрес analytics-service |
-| `GATEWAY_URL` | адрес API Gateway |
-| PostgreSQL variables | параметры подключения к базе данных |
+| `BOT_TOKEN` | Telegram bot token |
+| `INTERNAL_API_KEY` | Key for internal requests between services |
+| `MINIAPP_SIGNING_SECRET` | Secret for signing Mini App token/data |
+| `MINIAPP_PUBLIC_URL` | Public HTTPS address of the Mini App |
+| `FINANCE_URL` | finance-service address |
+| `ANALYTICS_URL` | analytics-service address |
+| `GATEWAY_URL` | API Gateway address |
+| PostgreSQL variables | Database connection settings |
 
-> Реальный `.env` не должен попадать в GitHub. В репозитории хранится только `.env.example` без рабочих секретов.
+> Never commit the real `.env` to GitHub. The repository contains only `.env.example`, with no active secrets.
 
 ---
 
-## Установка
+## Installation
 
 ```bash
 cd finance_helper/source_files
@@ -233,15 +235,15 @@ pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-На Windows активируйте окружение командой:
+On Windows, activate the environment with:
 
 ```powershell
 .\venv\Scripts\Activate.ps1
 ```
 
-## Миграции базы данных
+## Database migrations
 
-После создания PostgreSQL database выполните:
+After creating the PostgreSQL database, run:
 
 ```bash
 cd finance_helper/source_files/services/finance-service
@@ -250,29 +252,29 @@ alembic upgrade head
 
 ---
 
-## Запуск сервисов
+## Running the services
 
-### Локальная демонстрация одной командой
+### One-command local demo
 
-После установки зависимостей и создания **отдельной локальной PostgreSQL БД**
-укажите её параметры в `finance_helper/source_files/.env`.
-Из `finance_helper/source_files` с активированным venv выполните:
+After installing dependencies and creating **a separate local PostgreSQL database**,
+set its connection parameters in `finance_helper/source_files/.env`.
+From `finance_helper/source_files`, with the venv activated, run:
 
 ```bash
 python scripts/run_demo.py
 ```
 
-Команда применяет миграции, запускает три сервиса на `127.0.0.1:8100–8102`,
-создаёт отдельного demo-пользователя и печатает готовую ссылку Mini App.
-Telegram-бот для этой демонстрации не нужен. Оставьте терминал открытым;
-`Ctrl+C` остановит сервисы. Следующий запуск выдаст новую ссылку.
-Не публикуйте ссылку с токеном. Данные сохраняются в выбранной БД;
-операции добавляются только если у demo-пользователя их ещё нет.
+The command applies migrations, starts three services on `127.0.0.1:8100–8102`,
+creates a separate demo user, and prints a ready-to-use Mini App link.
+The Telegram bot is not required for this demo. Keep the terminal open;
+`Ctrl+C` stops the services. The next run generates a new link.
+Do not publish the token-bearing link. Data is stored in the selected database;
+transactions are added only if the demo user has none yet.
 
-Если порты заняты: `python scripts/run_demo.py --port 8200`.
-Проверка с автоматической остановкой: `python scripts/run_demo.py --smoke-test`.
-Launcher не создаёт БД/роль PostgreSQL и не устанавливает зависимости:
-выполните разделы настройки и установки выше перед первым запуском.
+If the ports are occupied: `python scripts/run_demo.py --port 8200`.
+To verify and stop automatically: `python scripts/run_demo.py --smoke-test`.
+The launcher does not create the PostgreSQL database/role or install dependencies:
+complete the setup and installation sections above before the first run.
 
 ### Finance Service
 
@@ -302,44 +304,44 @@ cd finance_helper/source_files/services/bot-service
 python -m app.main
 ```
 
-Для постоянного серверного запуска процессы можно оформить как `systemd` services или использовать другой process manager.
+For persistent server operation, processes can be configured as `systemd` services or managed with another process manager.
 
 ---
 
 ## Mini App
 
-В `.env` задаётся публичный HTTPS URL:
+Set the public HTTPS URL in `.env`:
 
 ```env
 MINIAPP_PUBLIC_URL=https://your-domain.example/miniapp/app
 ```
 
-Маршруты `/miniapp/app` и `/miniapp/public/...` должны направляться в `api-gateway`.
+The `/miniapp/app` and `/miniapp/public/...` routes must be forwarded to `api-gateway`.
 
 ---
 
 ## Demo seed
 
-Для заполнения системы демонстрационными данными:
+To populate the system with demo data:
 
 ```bash
 cd finance_helper/source_files
 python scripts/seed_demo.py
 ```
 
-Скрипт использует `GATEWAY_URL`, `INTERNAL_API_KEY`, `DEMO_TELEGRAM_ID` и `DEMO_TELEGRAM_USERNAME`.
+The script uses `GATEWAY_URL`, `INTERNAL_API_KEY`, `DEMO_TELEGRAM_ID`, and `DEMO_TELEGRAM_USERNAME`.
 
 ---
 
-## Тестирование
+## Testing
 
-Автоматизированные тесты находятся в:
+Automated tests are located in:
 
 ```text
 finance_helper/source_files/tests
 ```
 
-Запуск:
+Start:
 
 ```bash
 cd finance_helper/source_files
@@ -353,9 +355,9 @@ $env:PYTEST_DISABLE_PLUGIN_AUTOLOAD='1'
 python -m pytest -q
 ```
 
-Часть smoke-тестов проверяет работающий `api-gateway`. Если gateway не запущен, соответствующие integration checks могут быть пропущены.
+Some smoke tests check a running `api-gateway`. If the gateway is not running, the corresponding integration checks may be skipped.
 
-Ручные сценарии находятся в:
+Manual scenarios are located in:
 
 ```text
 finance_helper/source_files/docs/test_scenarios.md
@@ -363,24 +365,24 @@ finance_helper/source_files/docs/test_scenarios.md
 
 ---
 
-## Документация
+## Documentation
 
-Актуальный локальный запуск: [`docs/local-run.md`](docs/local-run.md).
-PDF описывает серверный вариант; дополнения для localhost находятся в этом
-руководстве и README.
+Current local setup guide: [`docs/local-run.md`](docs/local-run.md).
+The PDF describes the server configuration; localhost-specific additions are in this
+guide and the README.
 
-- `README.md` — обзор проекта и быстрый запуск;
-- `finance_helper/run_and_configuration_guide/Finance_Helper_Guide.pdf` — подробное руководство по конфигурации;
-- `finance_helper/source_files/docs/test_scenarios.md` — ручные тестовые сценарии.
+- `README.md` — project overview and quick start;
+- `finance_helper/run_and_configuration_guide/Finance_Helper_Guide.pdf` — detailed configuration guide;
+- `finance_helper/source_files/docs/test_scenarios.md` — manual test scenarios.
 
 ---
 
-## Статус
+## Status
 
-Проект завершён как релизная версия ВКР и подготовлен к запуску на облачном сервере.
+The project is complete as the release version of a graduation thesis and prepared for deployment to a cloud server.
 
-Основные технические акценты — **Python backend, FastAPI, микросервисная архитектура, PostgreSQL, Telegram integrations и тестирование**.
+The main technical focus areas are **Python backend development, FastAPI, microservices architecture, PostgreSQL, Telegram integrations, and testing**.
 
-## Автор
+## Author
 
-[Николь Журбенко](https://github.com/nikamurkaa)
+[Nicole Zhurbenko](https://github.com/nikamurkaa)
