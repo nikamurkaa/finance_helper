@@ -164,7 +164,7 @@ Telegram-интерфейс на aiogram. Через бота доступны �
 ## Структура проекта
 
 ```text
-finance_helper/
+finance-helper/
 ├── README.md
 └── finance_helper/
     ├── run_and_configuration_guide/

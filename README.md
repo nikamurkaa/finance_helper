@@ -164,7 +164,7 @@ The current server configuration does not require Docker or `ngrok`.
 ## Project structure
 
 ```text
-finance_helper/
+finance-helper/
 ├── README.md
 └── finance_helper/
     ├── run_and_configuration_guide/
